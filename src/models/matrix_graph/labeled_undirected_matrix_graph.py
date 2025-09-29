@@ -105,9 +105,6 @@ class LabeledUndirectedMatrixGraph(MatrixGraph):
                 for column in range(row, len(self.adjacency_matrix[i])):
                     if(self.adjacency_matrix[row][column] != float('inf')):
                         f.write(f"{row} {column} {self.adjacency_matrix[row][column]}\n")
-        print("Gerado grafo.txt")
-
-
 
     def show(self):
         print(f"\n Nodes: {self.nodes:2d} ")

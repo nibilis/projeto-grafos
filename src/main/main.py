@@ -34,9 +34,11 @@ def handle_menu_option(option):
     try: 
         if option == 1: # 1. Read data from grafo.txt
             graph = graph.graph_from_file("grafo.txt")
+            print("Graph loaded from grafo.txt")
 
         elif option == 2: # 2. Write data to grafo.txt
             graph.graph_to_file("grafo.txt")
+            print("Generated grafo.txt")
 
         elif option == 3: # 3. Insert vertex
             label = input("Enter the label for the new vertex: ")
