@@ -88,7 +88,6 @@ class LabeledUndirectedMatrixGraph(MatrixGraph):
             
             for _ in range(edges):
                 origin, destiny, label = file.readline().strip().split()
-                print(f"Read edge: {origin} - {destiny} with label '{label}'")
                 origin = int(origin)
                 destiny = int(destiny)
                 label = str(label)
