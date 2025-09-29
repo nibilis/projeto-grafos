@@ -24,7 +24,7 @@ def print_menu():
         print("6. Remove edge")
         print("7. Show file content")
         print("8. Show graph")
-        print("9. Show graph connectivity and reduced graph")
+        print("9. Show graph connectivity")
         print("10. Exit")
         print("==================================")
 
@@ -36,7 +36,7 @@ def handle_menu_option(option):
             graph = graph.graph_from_file("grafo.txt")
 
         elif option == 2: # 2. Write data to grafo.txt
-            pass
+            graph.graph_to_file("grafo.txt")
 
         elif option == 3: # 3. Insert vertex
             label = input("Enter the label for the new vertex: ")
@@ -67,8 +67,9 @@ def handle_menu_option(option):
         elif option == 8: # 8. Show graph
             graph.show()
 
-        elif option == 9: # 9. Show graph connectivity and reduced graph
-            pass
+        elif option == 9: # 9. Show graph connectivity
+            connectivity = graph.connectivity()
+            print("Connected") if connectivity else print("Not Connected")
 
         elif option == 10: # 10. Exit
             print("Exiting the program.")

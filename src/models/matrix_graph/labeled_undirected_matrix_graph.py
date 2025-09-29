@@ -74,8 +74,8 @@ class LabeledUndirectedMatrixGraph(MatrixGraph):
             self.__init__(nodes)
 
             for i in range(nodes):
-                label = file.readline().strip()
-                self.node_labels[i] = label
+                label = file.readline().strip().split('"')
+                self.node_labels[i] = label[1]
 
             edges = int(file.readline())
             if edges == 0:
@@ -95,6 +95,21 @@ class LabeledUndirectedMatrixGraph(MatrixGraph):
                 self.insert_edge(origin, destiny, label)
         return self
     
+    def graph_to_file(self, filename):
+        with open(filename, "w") as f:
+            f.write("2\n")
+            f.write(f"{self.nodes}\n")
+            for i in range(self.nodes): 
+                f.write(f'{i} "{self.node_labels[i]}"\n')
+            f.write(f"{self.edges}\n")
+            for row in range(len(self.adjacency_matrix)):
+                for column in range(row, len(self.adjacency_matrix[i])):
+                    if(self.adjacency_matrix[row][column] != float('inf')):
+                        f.write(f"{row} {column} {self.adjacency_matrix[row][column]}\n")
+        print("Gerado grafo.txt")
+
+
+
     def show(self):
         print(f"\n Nodes: {self.nodes:2d} ")
         for i in range(self.nodes):
@@ -143,3 +158,16 @@ class LabeledUndirectedMatrixGraph(MatrixGraph):
                     selected_node = node
         
         return distances, routes
+
+    def connectivity(self):
+        marked = [False] * self.nodes
+        marked[0] = True
+        for i in range(len(self.adjacency_matrix)):
+            for j in range(i, len(self.adjacency_matrix)):
+                if(self.adjacency_matrix[i][j] != float('inf')):
+                    if(marked[j] == False):
+                        marked[j] = True
+        for i in range(len(marked)):
+            if(marked[i] == False):
+                return False
+        return True
